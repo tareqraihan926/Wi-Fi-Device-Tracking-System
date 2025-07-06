@@ -133,7 +133,7 @@ python3 get_hostnames.py
 ````
 This will generate a daily CSV log file like device_log_2025-06-16.csv
 
-# Automate Logging (Optional)- ((System Automation setup will be stated here later after confirmation of the test))
+### Automate Logging (Optional)- ((System Automation setup will be stated here later after confirmation of the test))
 
 Use cron to schedule:
 ````
