@@ -24,7 +24,19 @@ if it will break system issue for this package install error then should run:
 ```
 pip3 install scapy --break-system-packages
 ```
-List all devices currently connected to the same Wi-Fi router you're connected to. This includes their: Real MAC addresses | Hostnames | IP addresses | And possibly vendor information.
+### Run Wireshark to collect live monitoring logs under the same network with other connected device traffic.
+```
+sudo wireshark
+```
+![image](https://github.com/user-attachments/assets/e6c83c1a-0de3-4d01-9eec-5970f16d4395)
+
+Select your preferred wireless interface name that will be shown here or select any. Then start Capturing for 1-2 minutes. 
+
+![image](https://github.com/user-attachments/assets/09b6ff64-4b3c-408f-aefa-db85d0168ab1)
+
+we can see the ip series from there,,
+
+Now, List all devices currently connected to the same Wi-Fi router you're connected to. This includes their: Real MAC addresses | Hostnames | IP addresses | And possibly vendor information.
 
 Since you are already connected to your router via Wi-Fi, the best approach is:
 
