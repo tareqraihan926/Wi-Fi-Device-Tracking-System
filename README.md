@@ -16,10 +16,66 @@
 1. Install OS and Tools
 Ensure you're using a Linux distro like Kali Linux or Ubuntu with support for monitor mode.
 
-        sudo apt update && sudo apt install aircrack-ng tcpdump wireshark hostapd isc-dhcp-server freeradius python3 python3-pip
+        sudo apt update && sudo apt install net-tools arp-scan nmap aircrack-ng tcpdump wireshark hostapd isc-dhcp-server freeradius python3 python3-pip
 Install Python packages:
    
     pip3 install scapy flask pandas numpy
+if it will break system issue for this package install error then should run:
+```
+pip3 install scapy --break-system-packages
+```
+List all devices currently connected to the same Wi-Fi router you're connected to. This includes their: Real MAC addresses | Hostnames | IP addresses | And possibly vendor information.
+
+Since you are already connected to your router via Wi-Fi, the best approach is:
+
+✔️ Use arp-scan or ARP table-based scanning
+
+This will list all connected devices on the same subnet.
+
+### Scan Network to Discover Connected Devices
+
+Create a script: get_connected_devices.py
+```
+import os
+import csv
+from datetime import datetime
+from scapy.all import ARP, Ether, srp
+
+output_file = f"device_log_{datetime.now().strftime('%Y-%m-%d_%H-%M')}.csv"
+
+def scan_network(ip_range):
+    arp = ARP(pdst=ip_range)
+    ether = Ether(dst="ff:ff:ff:ff:ff:ff")
+    packet = ether / arp
+    result = srp(packet, timeout=2, verbose=0)[0]
+
+    devices = []
+    for sent, received in result:
+        hostname = os.popen(f"nmblookup -A {received.psrc} | grep '<00>' | cut -d' ' -f1").read().strip()
+        vendor = os.popen(f"curl -s https://api.macvendors.com/{received.hwsrc}").read().strip()
+        devices.append([received.hwsrc, received.psrc, hostname, vendor])
+
+    return devices
+
+def save_results(devices):
+    with open(output_file, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(["MAC", "IP", "Hostname", "Vendor"])
+        for d in devices:
+            writer.writerow(d)
+
+if __name__ == "__main__":
+    ip_range = "192.168.164.0/24"  # change this to match your subnet
+    print("[*] Scanning network for connected devices...")
+    devices = scan_network(ip_range)
+    save_results(devices)
+    print(f"[+] Results saved to {output_file}")
+```
+Run It:
+```
+sudo python3 get_connected_devices.py
+```
+
 3. Enable Monitor Mode on Wi-Fi Interface
 List your wireless interfaces:
 
