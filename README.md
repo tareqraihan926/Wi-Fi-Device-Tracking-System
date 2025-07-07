@@ -167,7 +167,8 @@ Locates the Station MAC section in the CSV (bottom half of airodump-ng output). 
 python3 parse_passive_scan.py
 ````
 Result looks like:
-![image](https://github.com/user-attachments/assets/b6c54087-ea37-46ec-818d-bdaec4fa0b50)
+![image](https://github.com/user-attachments/assets/24a0a0a6-482c-4fb8-a609-bcaf800fdd3e)
+
 
 ## IP, Hostname, MAC Mapping (Active Scan)
 
