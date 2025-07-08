@@ -18,7 +18,7 @@
 1. Install OS and Tools
 Ensure you're using a Linux distro like Kali Linux or Ubuntu with support for monitor mode.
 
-        sudo apt update && sudo apt install net-tools arp-scan nmap aircrack-ng tcpdump wireshark hostapd isc-dhcp-server freeradius python3 python3-pip
+        sudo apt update && sudo apt install net-tools arp-scan nmap aircrack-ng tcpdump wireshark samba-common-bin hostapd isc-dhcp-server freeradius python3 python3-pip
 Install Python packages:
    
     pip3 install scapy flask pandas numpy
