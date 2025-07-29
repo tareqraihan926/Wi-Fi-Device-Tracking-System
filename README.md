@@ -1,4 +1,3 @@
-### If you facing any issue, feel free to ping me on my whatsapp number( +8801793315181 ) to quick response. Thank you. 
 
 # 🔧 Project: Wi-Fi Device Tracking System
 
